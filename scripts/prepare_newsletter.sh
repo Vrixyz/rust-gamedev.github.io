@@ -7,14 +7,14 @@
 set -v
 
 read -r -d '\n' -a news <<< `find content/news/ -type d -printf "%f\n"| sort -n`
+echo $news
+echo ${news[-1]}
 
-last_news=`echo ${news[-1]} | sed -r s/0//`
-echo $last_news
-echo $((last_news+1))
-news_to_create_simple=`echo $((last_news+1))`
+export last_news=`echo ${news[-1]} | sed -r s/0//`
+export news_to_create_simple=`echo $((last_news+1))`
 echo $news_to_create_simple
 printf "%#03s" $news_to_create_simple
-news_to_create=`printf "%#03s" $news_to_create_simple`
+export news_to_create=`printf "%#03s" $news_to_create_simple`
 echo $news_to_create
 read -e -p "Do you want to create issue $news_to_create? (y/n): " choice
 
@@ -22,7 +22,7 @@ read -e -p "Do you want to create issue $news_to_create? (y/n): " choice
 
 echo "accepted"
 
-new_file=`echo "content/news/$news_to_create/index.md"`
+export new_file=`echo "content/news/$news_to_create/index.md"`
 
 echo $new_file
 
