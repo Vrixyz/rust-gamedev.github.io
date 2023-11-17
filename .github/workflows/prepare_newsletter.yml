@@ -10,7 +10,6 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - run: ./zola --version
       - name: copy template and adapt dates and ids.
         run: echo y | ./scripts/prepare_newsletter.sh
         env:
