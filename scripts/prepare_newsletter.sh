@@ -6,9 +6,9 @@
 
 ls -l content/news
 
-find content/news/ -type d -printf "%f\n"
+find content/news/ -type d -printf "%f\n" | sort -n
 
-read -r -d '\n' -a news <<< `find content/news/ -type d -printf "%f\n"`
+read -r -d '\n' -a news <<< `find content/news/ -type d -printf "%f\n"| sort -n`
 
 last_news=`echo ${news[-1]} | sed -r s/0//`
 echo $last_news
