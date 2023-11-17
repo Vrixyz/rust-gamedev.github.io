@@ -12,9 +12,13 @@ echo ${news[-1]}
 
 export last_news=`echo ${news[-1]} | sed -r s/0//`
 export news_to_create_simple=`echo $((last_news+1))`
+
 echo $news_to_create_simple
 printf "%#03s" $news_to_create_simple
-export news_to_create=`printf "%#03s" $news_to_create_simple`
+
+printf %03d $news_to_create_simple
+
+export news_to_create=$(printf %03d $news_to_create_simple)
 echo $news_to_create
 read -e -p "Do you want to create issue $news_to_create? (y/n): " choice
 
