@@ -18,7 +18,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git branch -f _gh_action_ci_prepare_newletter
+          git checkout -B _gh_action_ci_prepare_newletter
           git add .
           git commit -m "new newsletter"
           git push -f origin _gh_action_ci_prepare_newletter
