@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This scripts parses existing news, and copies the newsletter template
 # alongside the others, with its incremented id number.
