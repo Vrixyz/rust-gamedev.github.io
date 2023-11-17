@@ -14,7 +14,17 @@ jobs:
         run: echo y | ./scripts/prepare_newsletter.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: create branch and commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git push -d origin _gh_action_ci_prepare_newletter
+          git branch -D _gh_action_ci_prepare_newletter
+          git branch -B _gh_action_ci_prepare_newletter
+          git add .
+          git commit -m "new newsletter"
+          git push origin _gh_action_ci_prepare_newletter
       - name: create pull request
-        run: gh pr create -B source -H new_newsletter --title 'Prepare new newsletter' --body 'Created by Github action'
+        run: gh pr create -B source -H _gh_action_ci_prepare_newletter --title 'Prepare new newsletter' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

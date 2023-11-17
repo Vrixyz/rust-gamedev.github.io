@@ -4,9 +4,7 @@
 # alongside the others, with its incremented id number.
 # This script also replaces the TODOs related to the news id number.
 
-ls -l content/news
-
-find content/news/ -type d -printf "%f\n" | sort -n
+set -v
 
 read -r -d '\n' -a news <<< `find content/news/ -type d -printf "%f\n"| sort -n`
 
@@ -23,6 +21,8 @@ echo "accepted"
 
 new_file="content/news/$news_to_create/index.md"
 
-mkdir -p content/news/$news_to_create && cp -r newsletter-template.md $new_file
+echo $new_file
+
+mkdir -p content/news/$news_to_create && cp newsletter-template.md $new_file
 
 sed -i 's/{TODO_id}/'$news_to_create_simple'/g' $new_file
