@@ -4,6 +4,10 @@
 # alongside the others, with its incremented id number.
 # This script also replaces the TODOs related to the news id number.
 
+ls -l content/news
+
+find content/news/ -type d -printf "%f\n"
+
 read -r -d '\n' -a news <<< `find content/news/ -type d -printf "%f\n"`
 
 last_news=`echo ${news[-1]} | sed -r s/0//`
